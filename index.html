@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="ATI-VLA: Actionable Alignment Then Adaptive Injection">
+  <meta property="og:description" content="Action-centric predictive robot learning through shared-codebook alignment and adaptive latent injection.">
+  <title>ATI-VLA | Project Page</title>
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/site-config.js"></script>
+  <script defer src="static/js/index.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#abstract">Skip to content</a>
+  <header class="hero publication-header" id="top">
+    <div class="hero-body">
+      <div class="container page-container has-text-centered">
+        <h1 class="title publication-title">ATI-VLA: Action-Centric Predictive<br class="title-break"> Vision–Language–Action Models via<br class="title-break"> Actionable Alignment Then Adaptive Injection</h1>
+        <div class="publication-authors" aria-label="Authors">
+          <div class="author-row">
+            <span class="author-block">Yijie Zhu<sup>1,2</sup>,</span>
+            <span class="author-block">Rui Shao<sup>1,5,*</sup>,</span>
+            <span class="author-block">Jie He<sup>1</sup>,</span>
+            <span class="author-block">Wei Li<sup>1</sup>,</span>
+            <span class="author-block">Bo Zhao<sup>2</sup>,</span>
+            <span class="author-block">Yelin Wang<sup>2</sup>,</span>
+          </div>
+          <div class="author-row">
+            <span class="author-block">Xiaochen Yuan<sup>3</sup>,</span>
+            <span class="author-block">Tao Tan<sup>3</sup>,</span>
+            <span class="author-block">Miao Zhang<sup>1</sup>,</span>
+            <span class="author-block">Xiaojiang Peng<sup>4</sup>,</span>
+            <span class="author-block">Zitong Yu<sup>2,6,*</sup></span>
+          </div>
+        </div>
+        <div class="publication-affiliations" aria-label="Affiliations">
+          <div class="affiliation-row">
+            <span><sup>1</sup>Harbin Institute of Technology, Shenzhen</span>
+            <span><sup>2</sup>Great Bay University</span>
+            <span><sup>3</sup>Macao Polytechnic University</span>
+          </div>
+          <div class="affiliation-row">
+            <span><sup>4</sup>Shenzhen Technology University</span>
+            <span><sup>5</sup>Shenzhen Loop Area Institute</span>
+          </div>
+          <div class="affiliation-row">
+            <span><sup>6</sup>Dongguan Key Laboratory for Intelligence and Information Technology</span>
+          </div>
+        </div>
+        <p class="publication-correspondence"><sup>*</sup> Corresponding authors: Rui Shao and Zitong Yu</p>
+        <p class="publication-venue">NeurIPS 2026</p>
+        <div class="publication-links" aria-label="Project resources">
+          <a class="button resource-button" id="arxiv-resource" href="#top"><span class="icon"><i class="fas fa-file-alt" aria-hidden="true"></i></span><span>arXiv</span></a>
+          <a class="button resource-button" id="code-resource" href="#top"><span class="icon"><i class="fab fa-github" aria-hidden="true"></i></span><span>Code</span></a>
+          <a class="button resource-button" href="#demos"><span class="icon"><i class="fas fa-play" aria-hidden="true"></i></span><span>Demos</span></a>
+        </div>
+        <nav class="section-nav" aria-label="Page sections">
+          <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#experiments">Experiments</a><a href="#analysis">Analysis</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-muted" id="abstract">
+      <div class="container page-container">
+        <h2 class="title is-3 section-title">Abstract</h2>
+        <div class="abstract-copy reading-width">
+          <p>Predictive Vision–Language–Action (VLA) models aim to improve robotic manipulation via future observation or world dynamics forecasting. However, existing approaches often fail to realize this potential and underperform direct action prediction models. We argue that these limitations stem from modality misalignment between observations and actions, together with joint optimization conflicts that drive learning away from an action-centric objective. To this end, we introduce <strong>ATI-VLA</strong>, an Action-Centric Predictive Vision–Language–Action framework via <strong>Actionable Alignment Then Adaptive Injection</strong>. Specifically, it follows a two-step design: <strong>1) Actionable Representation Alignment via a Shared Codebook.</strong> It aligns predictive observation and action representations by mapping both modalities into a shared discrete latent space via a unified codebook, making predictive observation latents readily usable for action generation and mitigating modality misalignment. <strong>2) Action-Centric Adaptive Injection of Predictive Latents.</strong> Building upon this, it then injects predictive observation latents into action decoding as explicit predictive priors via a lightweight adaptive side-path, enabling adaptive predictive guidance under a single action-centric objective. Extensive experiments on both simulation and real-world robotic tasks demonstrate that ATI-VLA achieves state-of-the-art performance with faster convergence.</p>
+        </div>
+        <figure class="paper-figure overview-figure" id="intro">
+          <a class="figure-link" href="assets/images/intro.png" target="_blank" rel="noopener" aria-label="Open ATI-VLA overview figure at full resolution">
+            <img src="assets/images/intro.png" width="3285" height="1190" alt="Comparison of general VLA, predictive VLA, and ATI-VLA, with analysis of observation–action modality gaps and training convergence." decoding="async">
+          </a>
+          <figcaption>ATI-VLA addresses observation–action modality misalignment and joint optimization conflicts through actionable alignment followed by adaptive injection.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="container page-container">
+        <h2 class="title is-3 section-title">Method</h2>
+        <p class="section-lead reading-width">ATI-VLA follows an <strong>align-then-inject</strong> design: first learn action-grounded predictive representations, then use them to guide action generation under a single action objective.</p>
+        <div class="method-grid">
+        <article class="method-stage">
+          <h3 class="subsection-title"><span class="stage-label">Stage 1</span>Actionable Representation Alignment</h3>
+          <figure class="paper-figure">
+            <a class="figure-link method-figure-link" href="assets/images/stage%201.png" target="_blank" rel="noopener" aria-label="Open Stage 1 alignment figure at full resolution">
+              <img src="assets/images/stage%201.png" width="2460" height="795" alt="Observation and action encoders use a shared codebook and a unified decoder to predict future observations and actions; the latent visualization shows improved cross-modal alignment." loading="lazy" decoding="async">
+            </a>
+            <figcaption>The current observation and action are encoded and quantized through a <strong>shared discrete codebook</strong>. A unified decoder jointly predicts future observations and actions, learning action-grounded predictive prototypes through prediction rather than input reconstruction. The visualization on the right illustrates how observation and action latents become aligned during training.</figcaption>
+          </figure>
+        </article>
+        <article class="method-stage">
+          <h3 class="subsection-title"><span class="stage-label">Stage 2</span>Action-Centric Adaptive Injection</h3>
+          <figure class="paper-figure">
+            <a class="figure-link method-figure-link" href="assets/images/stage%202.png" target="_blank" rel="noopener" aria-label="Open Stage 2 injection figure at full resolution">
+              <img src="assets/images/stage%202.png" width="1415" height="1145" alt="A frozen observation encoder and codebook supply predictive latents to a lightweight side-path, which adaptively injects them into selected action-decoder layers." loading="lazy" decoding="async">
+            </a>
+            <figcaption>After alignment, the alignment module is frozen. A lightweight adaptive side-path transforms predictive observation latents and injects them into selected LLM layers to guide action decoding. The action policy and side-path are optimized <strong>solely under the action objective</strong>.</figcaption>
+          </figure>
+        </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="experiments">
+      <div class="container page-container">
+        <h2 class="title is-3 section-title">Experiments</h2>
+        <p class="section-lead reading-width">We evaluate ATI-VLA on LIBERO, RoboTwin 2.0, and real-world bimanual manipulation with Galaxea R1 Lite and AgileX Cobot Magic.</p>
+        <article class="experiment-block">
+          <h3 class="subsection-title">LIBERO</h3>
+          <figure class="paper-figure">
+            <div class="figure-scroll" tabindex="0" role="region" aria-label="LIBERO results; scroll horizontally on small screens">
+              <a class="figure-link table-image" href="assets/images/libero.png" target="_blank" rel="noopener" aria-label="Open LIBERO results at full resolution">
+                <img src="assets/images/libero.png" width="1340" height="636" alt="LIBERO results: ATI-VLA achieves 98.6% Spatial, 99.4% Object, 97.2% Goal, 96.2% Long, and 97.9% average success." loading="lazy" decoding="async">
+              </a>
+            </div>
+            <p class="mobile-figure-hint">Scroll to view the full table, or tap to open the image.</p>
+            <figcaption><strong>Results on LIBERO.</strong> ATI-VLA achieves a <strong>97.9% average success rate</strong> across the Spatial, Object, Goal, and Long suites, including <strong>96.2%</strong> on LIBERO-Long. The table reproduces the results reported in the paper.</figcaption>
+          </figure>
+        </article>
+        <article class="experiment-block" id="robotwin">
+          <h3 class="subsection-title">RoboTwin 2.0</h3>
+          <figure class="paper-figure robotwin-figure">
+            <div class="figure-scroll" tabindex="0" role="region" aria-label="RoboTwin 2.0 results; scroll horizontally on small screens">
+              <a class="figure-link table-image" href="assets/images/robotwin.png" target="_blank" rel="noopener" aria-label="Open RoboTwin 2.0 results at full resolution">
+                <img src="assets/images/robotwin.png" width="1368" height="780" alt="RoboTwin 2.0 results: ATI-VLA achieves 91.0%, 87.0%, 90.0%, and 21.0% on the four tasks, with 72.3% average success compared with 58.8% for the reproduced OpenVLA-OFT baseline." loading="lazy" decoding="async">
+              </a>
+            </div>
+            <p class="mobile-figure-hint">Scroll to view the full table, or tap to open the image.</p>
+            <figcaption><strong>Results on RoboTwin 2.0.</strong> ATI-VLA achieves a <strong>72.3% average success rate</strong>, improving over our reproduced OpenVLA-OFT baseline by <strong>13.5 percentage points</strong> under the same experimental settings.</figcaption>
+          </figure>
+        </article>
+        <article class="experiment-block">
+          <h3 class="subsection-title">Real-World Evaluation</h3>
+          <figure class="paper-figure">
+            <div class="figure-scroll" tabindex="0" role="region" aria-label="Real-world results; scroll horizontally on small screens">
+              <a class="figure-link table-image" href="assets/images/real.png" target="_blank" rel="noopener" aria-label="Open real-world results at full resolution">
+                <img src="assets/images/real.png" width="1330" height="592" alt="Success rates for Object Packing, Markers Collection, Plate Handover, T-shirt Folding, and OOD T-shirt Folding; ATI-VLA averages 70% on Galaxea R1 Lite and 72% on AgileX Cobot Magic." loading="lazy" decoding="async">
+              </a>
+            </div>
+            <p class="mobile-figure-hint">Scroll to view the full table, or tap to open the image.</p>
+            <figcaption><strong>Results across two robot platforms.</strong> ATI-VLA achieves average task-completion rates of <strong>70% on Galaxea R1 Lite</strong> and <strong>72% on AgileX Cobot Magic</strong> across five long-horizon tasks, including out-of-distribution T-shirt folding. The reported average measures completion of the entire task sequence.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="analysis">
+      <div class="container page-container">
+        <h2 class="title is-3 section-title">Convergence and Efficiency</h2>
+        <figure class="paper-figure">
+          <div class="figure-scroll" tabindex="0" role="region" aria-label="Convergence plots across four LIBERO suites; scroll horizontally on small screens">
+            <a class="figure-link convergence-image" href="assets/images/convergence.png" target="_blank" rel="noopener" aria-label="Open convergence plots at full resolution">
+              <img src="assets/images/convergence.png" width="5000" height="760" alt="Training success-rate curves compare ATI-VLA with the variant without alignment on the Spatial, Object, Goal, and Long suites." loading="lazy" decoding="async">
+            </a>
+          </div>
+          <p class="mobile-figure-hint">Scroll to view all four plots, or tap to open the image.</p>
+          <figcaption><strong>Effect of actionable alignment.</strong> ATI-VLA converges faster and achieves stronger performance than the variant without alignment across the four LIBERO suites, supporting the role of alignment in making predictive representations useful for action learning.</figcaption>
+        </figure>
+        <article class="tradeoff-block" id="tradeoff">
+          <h3 class="subsection-title">Performance–Efficiency Trade-off</h3>
+          <figure class="paper-figure">
+            <div class="figure-scroll" tabindex="0" role="region" aria-label="Model complexity and performance trade-off; scroll horizontally on small screens">
+              <a class="figure-link table-image" href="assets/images/tradeoff.png" target="_blank" rel="noopener" aria-label="Open the performance–efficiency trade-off table at full resolution">
+                <img src="assets/images/tradeoff.png" width="2280" height="438" alt="Trade-off table comparing OpenVLA-OFT and ATI-VLA in parameters, FLOPs, LIBERO, RoboTwin 2.0, real-world success, and training cost. ATI-VLA uses 8.04 billion parameters, 8.51 trillion FLOPs, and 16.2 hours of training." loading="lazy" decoding="async">
+              </a>
+            </div>
+            <p class="mobile-figure-hint">Scroll to view the full table, or tap to open the image.</p>
+            <figcaption><strong>Performance–efficiency trade-off.</strong> ATI-VLA improves task performance with only <strong>0.7% additional FLOPs</strong> over OpenVLA-OFT, while reducing total training time from <strong>30.2 to 16.2 hours (46.4%)</strong>. Training time includes both alignment and action-policy training.</figcaption>
+          </figure>
+          <p class="table-note">The dagger marks our reproduced OpenVLA-OFT baseline; real-world results refer to Galaxea R1 Lite. Success-rate changes are in percentage points; changes in parameters, FLOPs, and training cost are relative percentages.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="demos">
+      <div class="container page-container">
+        <h2 class="title is-3 section-title">Real-World Demos</h2>
+        <p class="section-lead">Examples of long-horizon bimanual manipulation with ATI-VLA.</p>
+        <div class="demo-grid">
+          <figure class="demo-card">
+            <h3 class="subsection-title">Object Packing</h3>
+            <video controls playsinline preload="metadata" aria-label="ATI-VLA Object Packing demonstration">
+              <source src="assets/videos/Task%201-Object%20packing.mp4" type="video/mp4">
+              Your browser does not support video playback. <a href="assets/videos/Task%201-Object%20packing.mp4">Download the video</a>.
+            </video>
+            <figcaption><strong>Instruction:</strong> Pack the object on the table into the bag.</figcaption>
+          </figure>
+          <figure class="demo-card">
+            <h3 class="subsection-title">T-shirt Folding (OOD)</h3>
+            <video controls playsinline preload="metadata" aria-label="ATI-VLA out-of-distribution T-shirt Folding demonstration">
+              <source src="assets/videos/Task%205-Tshirt%20Folding%20(OOD).mp4" type="video/mp4">
+              Your browser does not support video playback. <a href="assets/videos/Task%205-Tshirt%20Folding%20(OOD).mp4">Download the video</a>.
+            </video>
+            <figcaption><strong>Instruction:</strong> Fold the T-shirt.<br>Generalization to an unseen garment appearance and size.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="conclusion">
+      <div class="container page-container reading-width">
+        <h2 class="title is-3 section-title">Conclusion</h2>
+        <p>ATI-VLA addresses the observation–action modality gap and joint optimization conflicts in predictive VLA through an <strong>align-then-inject</strong> framework. A shared codebook learns action-grounded predictive representations, which are then adaptively injected into action decoding under a single action objective. Experiments across simulation benchmarks and two real-world platforms demonstrate improved task performance and faster convergence.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container page-container has-text-centered">
+      <p><strong>ATI-VLA</strong> · Actionable Alignment Then Adaptive Injection</p>
+      <div class="contact-links">
+        <a href="mailto:zyj99_hitsz@stu.hit.edu.cn">zyj99_hitsz@stu.hit.edu.cn</a>
+        <a href="mailto:shaorui@hit.edu.cn">shaorui@hit.edu.cn</a>
+        <a href="mailto:yuzitong@gbu.edu.cn">yuzitong@gbu.edu.cn</a>
+      </div>
+      <p class="template-credit">Website adapted from <a href="https://jiutian-vl.github.io/CogVLA-page/" target="_blank" rel="noopener">CogVLA</a> and the <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies template</a>. Website licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</p>
+      <a class="back-to-top" href="#top">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>
