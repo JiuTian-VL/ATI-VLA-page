@@ -1,16 +1,18 @@
 <div align="center">
-<!-- <h1>JiuTian (九天) </h1> -->
-<h2 class="papername"> CogVLA: Cognition-Aligned Vision-Language-Action Models via Instruction-Driven Routing & Sparsification</h2>
+  <h2>ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection</h2>
 </div>
 
-The project page for CogVLA.
+The official project page for **ATI-VLA**.
 
-```
-@article{li2025cogvla,
-  title={CogVLA: Cognition-Aligned Vision-Language-Action Model via Instruction-Driven Routing & Sparsification},
-  author={Li, Wei and Zhang, Renshan and Shao, Rui and He, Jie and Nie, Liqiang},
-  journal={Advances in neural information processing systems},
-  year={2025}
+## Citation
+
+If you find our work useful, please consider citing:
+
+```bibtex
+@misc{zhu2026ativla,
+  title={ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection},
+  author={Zhu, Yijie and Shao, Rui and He, Jie and Li, Wei and Zhao, Bo and Wang, Yelin and Yuan, Xiaochen and Tan, Tao and Zhang, Miao and Peng, Xiaojiang and Yu, Zitong},
+  year={2026}
 }
 ```
 
