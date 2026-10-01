@@ -10,7 +10,7 @@
   <meta property="og:description" content="Action-centric predictive robot learning through shared-codebook alignment and adaptive latent injection.">
   <title>ATI-VLA | Project Page</title>
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/index.css?v=4">
   <script defer src="static/js/fontawesome.all.min.js"></script>
   <script defer src="static/js/site-config.js"></script>
   <script defer src="static/js/index.js"></script>
@@ -112,7 +112,8 @@
       <div class="container page-container">
         <h2 class="title is-3 section-title">Experiments</h2>
         <p class="section-lead reading-width">We evaluate ATI-VLA on LIBERO, RoboTwin 2.0, and real-world bimanual manipulation with Galaxea R1 Lite and AgileX Cobot Magic.</p>
-        <article class="experiment-block">
+        <div class="benchmark-grid">
+        <article class="experiment-block" id="libero">
           <h3 class="subsection-title">LIBERO</h3>
           <figure class="paper-figure">
             <div class="figure-scroll" tabindex="0" role="region" aria-label="LIBERO results; scroll horizontally on small screens">
@@ -126,7 +127,7 @@
         </article>
         <article class="experiment-block" id="robotwin">
           <h3 class="subsection-title">RoboTwin 2.0</h3>
-          <figure class="paper-figure robotwin-figure">
+          <figure class="paper-figure">
             <div class="figure-scroll" tabindex="0" role="region" aria-label="RoboTwin 2.0 results; scroll horizontally on small screens">
               <a class="figure-link table-image" href="assets/images/robotwin.png" target="_blank" rel="noopener" aria-label="Open RoboTwin 2.0 results at full resolution">
                 <img src="assets/images/robotwin.png" width="1368" height="780" alt="RoboTwin 2.0 results: ATI-VLA achieves 91.0%, 87.0%, 90.0%, and 21.0% on the four tasks, with 72.3% average success compared with 58.8% for the reproduced OpenVLA-OFT baseline." loading="lazy" decoding="async">
@@ -136,7 +137,8 @@
             <figcaption><strong>Results on RoboTwin 2.0.</strong> ATI-VLA achieves a <strong>72.3% average success rate</strong>, improving over our reproduced OpenVLA-OFT baseline by <strong>13.5 percentage points</strong> under the same experimental settings.</figcaption>
           </figure>
         </article>
-        <article class="experiment-block">
+        </div>
+        <article class="experiment-block wide-result" id="real-world">
           <h3 class="subsection-title">Real-World Evaluation</h3>
           <figure class="paper-figure">
             <div class="figure-scroll" tabindex="0" role="region" aria-label="Real-world results; scroll horizontally on small screens">
